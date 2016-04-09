@@ -1,0 +1,8 @@
+sudo apt-get install python-pip
+pip install django==1.7.4
+django-admin.py startproject nome_do_diretorio #baixa estrutura inicial do projeto
+cd nome_do_diretorio
+python manage.py migrate #cria o banco
+python manage.py runserver #roda o server
+python manage.py startapp perfis
+>settings.py>installed_app>'perfis'
