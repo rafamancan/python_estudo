@@ -29,6 +29,9 @@ class Perfil(object):
         perfis = []
         for linha in arquivo:
             valores = linha.split(',')
+            # caso atenda a condicao, o codigo abaixo sera omitido
+            if(len(valores) is not 3):
+            	raise ArgumentoInvalidoErro('Uma linha no arquivo %s deve ter 3 valores' % nome_arquivo)
             perfis.append(Perfil(*valores))
         arquivo.close()
         return perfis
@@ -42,3 +45,9 @@ class Perfil_Vip(Perfil):
 
     def obter_creditos(self):
         return super(Perfil_Vip, self).obter_curtidas() * 10.0
+
+class ArgumentoInvalidoErro(Exception):
+	def __init__(self, mensagem):
+		self.mensagem  = mensagem
+	def __str__(self):
+		return repr(self.mensagem)
